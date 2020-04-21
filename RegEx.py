@@ -1,4 +1,6 @@
 # Jackson Jared
+# 4.21.2020
+# This is an assignment using Regular Expressions to search a string for particular characters
 import re
 
 # Identifiers
@@ -37,9 +39,8 @@ import re
 menu = "code"
 while menu != "end":
     print("__" * 50)
-    string = input("\nType Your String"
-                   "\n>>>")
-    do = input("\n\nWhat would you wish to do? (TYPE THE NUMBER NEXT TO THE DESIRED CHOICE)"
+    do = input("\n\n(TYPE THE NUMBER NEXT TO THE DESIRED CHOICE)"
+               "\nWhat Would You Wish To DO?"
                "\n1. See if the string has a 'q'"
                "\n2. See if the string contains 'the'"
                "\n3. See if the string has a '*' in it"
@@ -52,11 +53,21 @@ while menu != "end":
                "\n10. See if the string contains an email address (what is the pattern for an email address?"
                "\n11. Exit The Program"
                "\n>>>")
-    try:
-        do = int(do)
-        print("")
-    except ValueError:
-        print("Enter a number 1 - 11")
+    while do is not None:
+        try:
+            do = int(do)
+            print("")
+            break
+        except ValueError:
+            print("\nEnter a number 1 - 11")
+            do = input("\n>>>")
+
+    if do == 11:
+        print("Adios")
+        quit()
+
+    string = input("\nType Your String"
+                   "\n>>>")
 
     if do == 1:
         # 1.See if the string has a 'q'
@@ -123,3 +134,5 @@ while menu != "end":
             print("The string contains at least one email address in it:\n", find)
         else:
             print("The string does not contain any email addresses.")
+
+    input("*Press Enter*")
