@@ -35,10 +35,14 @@ from time import sleep
 #
 # DON'T FORGET
 # . + * ? [] $ ^ () {} | \
-input("press enter").upper()
+input("press enter".upper())
 sleep(1)
+# Asks the user if they want all the sleep() methods
+slow_paced = input("\nHello user, would you like the slow placed experience? (Y or N)"
+                   "\n>>>").title()
 
-name = input("\nHello user, what is your name?"
+name = input("\nOkay."
+             "\nSay, what is your name?"
              "\n>>>").title()
 
 # Adds a dash in between each letter of the name
@@ -56,38 +60,54 @@ print(f'\nThat name seems familiar... {name1}...'
       '\nI\'m guessing you had fun with my last program, so I\'ve prepared another treat for you.'
       '\nAnd this time you don\'t have to type start.')
 
-sleep(5)
+if slow_paced == "Y":
+    sleep(5)
 # Introduction of what the program does
 print("\nAlright, for this program I am going to need you input strings."
       "\nYou will then be able to run your string through Regular Expressions."
       "\nTo access the one you want, you have to TYPE THE NUMBER NEXT TO IT."
       "\nYou can test the string you've entered as many times as you want.")
 
+
 # How to enter another string
-sleep(5)
+if slow_paced == "Y":
+    sleep(5)
 print("\n\nTo enter a new string, you must be at the menu."
       "\nThere, you can type 11.")
 
-sleep(3)
+
+if slow_paced == "Y":
+    sleep(3)
 print("\nTo exit the program, you must also be at the menu."
       "\nPress 12 once you're sure you want to leave.")
 
-sleep(3)
+
+if slow_paced == "Y":
+    sleep(3)
 print("\nOkay, type start, and we'll get this program up and running:"
       "\n>>>")
-sleep(.5)
+
+
+if slow_paced == "Y":
+    sleep(.5)
 print("Just kidding\n")
+
 
 # This asks the user for a string, then it runs the loop that allows the user to test the string
 menu = "code"
 while menu != "end":
-    sleep(1)
+    if slow_paced == "Y":
+        sleep(1)
     print("__" * 50)
+
     string = input("\nType Your String"
                    "\n>>>")
+
     # This loop allows the initial string to be tested
     while menu != 'ending':
-        sleep(1)
+        if slow_paced == "Y":
+            sleep(1)
+
         do = input("\n\n(TYPE THE NUMBER NEXT TO THE DESIRED CHOICE)"
                    "\nWhat Would You Wish To DO?"
                    "\n1. See if the string has a 'q'"
@@ -103,12 +123,27 @@ while menu != "end":
                    "\n11. Enter A New String"
                    "\n12. Exit The Program"
                    "\n>>>")
+
+        just_leave = 0  # You'll see what this is for in a second
+        # This loop checks if the user entered a number
         while do is not None:
+            just_leave += 1
             try:
                 do = int(do)
-                print("")
-                break
+                if 13 > do > 0:
+                    print("")
+                    break
+                # I realized that if the user enters 13, it is still a number, but it is not present on the list,
+                # so here I forced the try statement to fail, causing them to have to enter a number from 1 to 12
+                else:
+                    do = "*# This Makes 'do' a string to force the ValueError*"
+                    do = int(do)
             except ValueError:
+                if 11 > just_leave > 4:
+                    print("\nJust type 12, you're like a broken loop")  # If the user does enter a number from 1 - 12, five to ten consecutive times, this will show up
+                elif just_leave == 11:
+                    print("Alright fine, you've made it this far, continue to have fun")  # If the user reaches this, idk what's going on with them...
+
                 print("\nEnter a number 1 - 12")
                 do = input("\n>>>")
 
@@ -118,7 +153,7 @@ while menu != "end":
             break
 
         if do == 12:
-            print("Adios")
+            print("Adios, have a good day", name)
             quit()
 
         if do == 1:
@@ -221,5 +256,5 @@ while menu != "end":
             else:
                 print("The string does not contain any email addresses.")
 
-        input("\n*Press Enter*")
+        input("\n*Press Enter*".upper())
         print("__" * 50)
