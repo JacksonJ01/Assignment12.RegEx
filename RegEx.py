@@ -2,7 +2,7 @@
 # 4.21.2020
 # This is an assignment using Regular Expressions to search a string for particular characters
 import re
-
+from time import sleep
 # Identifiers
 # \d any number
 # \D anything but a number
@@ -35,13 +35,59 @@ import re
 #
 # DON'T FORGET
 # . + * ? [] $ ^ () {} | \
+input("press enter").upper()
+sleep(1)
 
+name = input("\nHello user, what is your name?"
+             "\n>>>").title()
+
+# Adds a dash in between each letter of the name
+name1 = ""
+for name_ in name:
+    if name_ != name[-1]:
+        name1 += name_ + '-'
+    else:
+        name1 += name_
+
+# A little bit of small talk
+print(f'\nThat name seems familiar... {name1}...'
+      f'\nOh, {name}!!'
+      '\nIt\'s been a little while, huh?'
+      '\nI\'m guessing you had fun with my last program, so I\'ve prepared another treat for you.'
+      '\nAnd this time you don\'t have to type start.')
+
+sleep(5)
+# Introduction of what the program does
+print("\nAlright, for this program I am going to need you input strings."
+      "\nYou will then be able to run your string through Regular Expressions."
+      "\nTo access the one you want, you have to TYPE THE NUMBER NEXT TO IT."
+      "\nYou can test the string you've entered as many times as you want.")
+
+# How to enter another string
+sleep(5)
+print("\n\nTo enter a new string, you must be at the menu."
+      "\nThere, you can type 11.")
+
+sleep(3)
+print("\nTo exit the program, you must also be at the menu."
+      "\nPress 12 once you're sure you want to leave.")
+
+sleep(3)
+print("\nOkay, type start, and we'll get this program up and running:"
+      "\n>>>")
+sleep(.5)
+print("Just kidding\n")
+
+# This asks the user for a string, then it runs the loop that allows the user to test the string
 menu = "code"
 while menu != "end":
+    sleep(1)
     print("__" * 50)
     string = input("\nType Your String"
                    "\n>>>")
+    # This loop allows the initial string to be tested
     while menu != 'ending':
+        sleep(1)
         do = input("\n\n(TYPE THE NUMBER NEXT TO THE DESIRED CHOICE)"
                    "\nWhat Would You Wish To DO?"
                    "\n1. See if the string has a 'q'"
@@ -66,9 +112,11 @@ while menu != "end":
                 print("\nEnter a number 1 - 12")
                 do = input("\n>>>")
 
+        # Takes you to the first loop to enter a new string
         if do == 11:
             print("Alright")
             break
+
         if do == 12:
             print("Adios")
             quit()
@@ -77,66 +125,101 @@ while menu != "end":
             # 1.See if the string has a 'q'
             find = re.findall(r"\w*[Qq]\w*", string)
             if find:
-                print("The string you entered contains at least one q:\n", find)
+                see = input("The string you entered contains at least one q."
+                            "\nDo you want to see the part of the string that contained the q? (Y or N)"
+                            "\n>>>").title()
+                if see == "Y":
+                    print("Okay:"
+                          "\n", find)
             else:
                 print("The string you entered does not contain a q.")
+
         if do == 2:
             # 2.See if the string contains 'the'
             if re.search(r"The|the", string):
                 print("The string you entered has 'The' or 'the' in it.")
             else:
                 print("The string you entered does not have 'The' or 'the' in it.")
+
         if do == 3:
             # 3.See if the string has a '*' in it
             if re.search(r'[*]', string):
                 print('This string contains an \'*\'.')
             else:
                 print('This string does not contain an \'*\'.')
+
         if do == 4:
             # 4.See if the string contains a digit
             find = re.findall(r"\d+", string)
             if find:
-                print("The string you enter contains at least one number:\n", find)
+                see = input("The string you enter contains at least one number."
+                            "\nDo you want to see the part of the string that contained the numbers? (Y or N)"
+                            "\n>>>").title()
+                if see == "Y":
+                    print("Okay:"
+                          "\n", find)
             else:
                 print("The string you entered does not contain any numbers.")
+
         if do == 5:
             # 5.See if the string contains a period
             if re.search(r'[.]', string):
                 print("This string contains a '.'")
             else:
                 print("This string does not contain a '.'")
+
         if do == 6:
             # 6.See if the string has at least 2 consecutive vowels (a,e,i,o,u) like in the word "bear"
             find = re.findall(r'\w*[aeiou][aeiou]\w*', string)
             if find:
-                print("This string contains at least one word with 2 consecutive vowels:\n", find)
+                see = input("This string contains at least one word with 2 consecutive vowels."
+                            "\nDo you want to see the part of the string that contained the vowels? (Y or N)"
+                            "\n>>>").title()
+                if see == "Y":
+                    print("Okay:"
+                          "\n", find)
             else:
                 print("This string does not contain any words with 2 consecutive vowels.")
+
         if do == 7:
             # 7.See if the string contains white space
             if re.search(r'.*\s.*', string):
                 print("The string contains a space.")
             else:
                 print("This string does not contain a space.")
+
         if do == 8:
             # 8.See if the string has any letters that repeat three times in a single word
-            find = re.findall(r'\w*.{3}\w*', string)  # This is not working as intended
+            find = re.findall(r'(\w)\1\1', string)  # This is not working as intended
             if find:
-                print("This string includes at least one word with a letter that repeats 3 times within that word:\n", find)
+                see = input("This string includes at least one word with a letter that repeats 3 times within that word."
+                            "\nDo you want to see the part of the string that contained the this? (Y or N)"
+                            "\n>>>").title()
+                if see == "Y":
+                    print("Okay:"
+                          "\n", find)
             else:
                 print("This string does not include a word with a letter that repeats 3 times within that word.")
+
         if do == 9:
             # 9.See if the string starts with the word ‘Hello’ (must match the capital H)
             if re.search(r'^Hello', string):
                 print("This string starts with the word 'Hello'.")
             else:
                 print("This string does not start with the word 'Hello'.")
+
         if do == 10:
             # 10.See if the string contains an email address (what is the pattern for an email address?)
             find = re.findall(r'\w+@\w+\.\w+', string)
             if find:
-                print("The string contains at least one email address in it:\n", find)
+                see = input("The string contains at least one email address in it."
+                            "\nDo you want to see the part of the string that contained the email(s)? (Y or N)"
+                            "\n>>>").title()
+                if see == "Y":
+                    print("Okay:"
+                          "\n", find)
             else:
                 print("The string does not contain any email addresses.")
 
-        input("*Press Enter*")
+        input("\n*Press Enter*")
+        print("__" * 50)
